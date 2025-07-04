@@ -133,9 +133,3 @@ http://localhost:8501
 - Integrate with **cloud storage** for model updates.
 - Improve **face recognition accuracy** with better embeddings.
 
----
-
-## **🙌 Contributors**
-- **Chaitanya Malani** (Lead Developer)
-
-For any issues, please raise a GitHub issue or contact me.
