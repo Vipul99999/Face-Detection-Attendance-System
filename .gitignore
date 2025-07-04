@@ -1,23 +1,52 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Ignore the virtual environment folder
+venv/
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# Ignore compiled Python files
+__pycache__/
+*.py[cod]
 
-# testing
-/coverage
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
 
-# production
-/build
+# Ignore IDE/editor-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
 
-# misc
+# Ignore environment and dependency files
+.env
+.streamlit
+*.env
+*.venv
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# Ignore logs and system files
+*.log
+*.sqlite3
+*.db
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+*.pyo
+*.pyd
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Ignore pytest and coverage reports
+.coverage
+*.cover
+.hypothesis/
+nosetests.xml
+coverage.xml
+htmlcov/
+pytest_cache/
+
+# Ignore compiled libraries
+*.so
+*.dll
+*.dylib
+
+# Ignore Python egg files
+*.egg
+*.egg-info/
+dist/
+build/
