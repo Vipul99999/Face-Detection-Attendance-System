@@ -12,8 +12,8 @@ A real-time **face recognition-based attendance system** using **Python, Streaml
 ## **🛠 Project Setup**
 ### **1️⃣ Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/face-recognition-attendance-system.git
-cd face-recognition-attendance-system
+git clone https://github.com/yourusername/Face-Detection-Attendance-System.git
+cd Face-Detection-Attendance-System
 ```
 
 ### **2️⃣ Setting up Virtual Environment and Installing Dependencies**
