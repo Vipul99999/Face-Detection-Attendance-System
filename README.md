@@ -24,20 +24,41 @@ Includes a **React.js dashboard** to visualize live attendance records. The syst
 
 ---
 
-### 🔹 System Architecture
+---
 
-React.js (Camera + Dashboard)
-⬇️
-FastAPI Backend
-⬇️
-Face Processing (OpenCV + ArcFace)
-⬇️
-MongoDB (User + Attendance Records)
+### 🔹 Demo
 
+![Project Demo](./public/Face_Project.gif)
 
 ---
 
-----
+### 🔹 Screenshots
+
+#### 🖥️ Dashboard Page View  
+![Dashboard Page Screenshot](.public/Dashboard_Page.png)
+
+#### 📷 Register Page View  
+![Register Page Screenshot](./public/Register_Page.png.png)
+
+---
+
+### 🔹 System Architecture
+
+📸 React.js Frontend (Camera + Dashboard)
+    └─ Captures live video feed and displays real-time attendance data
+
+🔗 FastAPI Backend
+    └─ Handles REST APIs for registration, face capture, and attendance logging
+
+🧠 Face Recognition Engine (OpenCV + ArcFace)
+    └─ Processes frames, extracts embeddings, performs anti-spoofing and duplicate checks
+
+🗄️ MongoDB Database
+    └─ Stores user profiles, face embeddings, and attendance records securely
+
+---
+
+---
 ### 🔹 Installation & Setup
 
 #### 1️⃣ Clone the repository
