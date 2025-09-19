@@ -1,0 +1,110 @@
+frontend/
+├── index.html
+├── package.json
+├── tailwind.config.cjs
+├── postcss.config.cjs
+├── vite.config.js
+└── src/
+    ├── main.jsx
+    ├── App.jsx
+    ├── styles.css
+    ├── services/
+    │   └── api.js
+    ├── components/
+    │   ├── CameraFeed.jsx
+    │   └── AttendanceTable.jsx
+    └── pages/
+        ├── Register.jsx
+        └── Dashboard.jsx
+
+command  -===> mkdir frontend
+cd frontend
+
+New-Item index.html -ItemType File
+New-Item package.json -ItemType File
+New-Item tailwind.config.cjs -ItemType File
+New-Item postcss.config.cjs -ItemType File
+New-Item vite.config.js -ItemType File
+
+mkdir src
+cd src
+
+New-Item main.jsx -ItemType File
+New-Item App.jsx -ItemType File
+New-Item styles.css -ItemType File
+
+mkdir services
+New-Item services/api.js -ItemType File
+
+mkdir components
+New-Item components/CameraFeed.jsx -ItemType File
+New-Item components/AttendanceTable.jsx -ItemType File
+
+mkdir pages
+New-Item pages/Register.jsx -ItemType File
+New-Item pages/Dashboard.jsx -ItemType File
+
+
+npm install
+npm run dev
+
+
+backend/
+├── app/
+│   ├── main.py                   # FastAPI entrypoint
+│   ├── api/
+│   │   └── v1/
+│   │       └── routes.py         # API endpoints
+│   ├── core/
+│   │   ├── db.py                 # MongoDB connection
+│   │   └── face_utils.py         # Face detection + embedding + matching
+│   ├── config/
+│   │   └── settings.py           # Environment config
+├── data/
+│   └── images/                   # Uploaded images
+├── requirements.txt
+└── README.md
+
+commands ---==>
+mkdir backend
+cd backend
+
+# Create top-level files
+New-Item requirements.txt -ItemType File
+New-Item README.md -ItemType File
+
+# Create app structure
+mkdir app
+cd app
+
+New-Item main.py -ItemType File
+
+mkdir api
+mkdir api\v1
+New-Item api\v1\routes.py -ItemType File
+
+mkdir core
+New-Item core\db.py -ItemType File
+New-Item core\face_utils.py -ItemType File
+
+mkdir config
+New-Item config\settings.py -ItemType File
+
+cd ../
+
+# Create data/images folder
+mkdir data
+mkdir data\images
+
+# On Windows (PowerShell)
+pip install -r requirements.txt
+
+#GPU version
+pip install onnxruntime-gpu/pip install "onnx==1.18.0"
+
+pip install pydantic-settings
+pip install pymongo
+
+pip install fastapi[all]
+
+run ==> uvicorn app.main:app --host 127.0.0.1 --port 8000
