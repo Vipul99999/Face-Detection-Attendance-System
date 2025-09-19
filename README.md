@@ -35,10 +35,10 @@ Includes a **React.js dashboard** to visualize live attendance records. The syst
 ### 🔹 Screenshots
 
 #### 🖥️ Dashboard Page View  
-![Dashboard Page Screenshot](.public/Dashboard_Page.png)
+![Dashboard Page Screenshot](./public/Dashboard_Page.png)
 
 #### 📷 Register Page View  
-![Register Page Screenshot](./public/Register_Page.png.png)
+![Register Page Screenshot](./public/Register_Page.png)
 
 ---
 
