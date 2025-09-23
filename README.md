@@ -28,7 +28,7 @@ Includes a **React.js dashboard** to visualize live attendance records. The syst
 
 ### 🔹 Demo
 
-![Project Demo](./public/Face_Project.gif)
+![Project Demo](./public/Face_Project.mp4)
 
 ---
 
