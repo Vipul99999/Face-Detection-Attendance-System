@@ -1,0 +1,48 @@
+services:
+  backend:
+    image: face-attendance-backend:latest
+    build:
+      context: ./backend
+    container_name: face-attendance-backend
+    environment:
+      APP_NAME: Face Attendance MVP
+      APP_ENV: production
+      APP_HOST: 0.0.0.0
+      APP_PORT: 8000
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: admin123
+      AUTH_SECRET: change-this-secret-in-production
+      EMBEDDING_ENCRYPTION_KEY: change-this-embedding-key
+      PREVIOUS_EMBEDDING_ENCRYPTION_KEYS: ""
+      AUTH_TOKEN_EXPIRY_HOURS: 12
+      LIVENESS_SECRET: change-this-liveness-secret
+      LIVENESS_TOKEN_EXPIRY_SECONDS: 45
+      CORS_ORIGINS: http://localhost:8080
+      DATABASE_PATH: /app/data/face_attendance.db
+      UPLOAD_DIR: /app/data/images
+      ANTI_SPOOF_MODEL_PATH: /app/models/anti_spoof_modelrgb.onnx
+      ANTI_SPOOF_THRESHOLD: 0.2808
+      STORE_FACE_IMAGES: "false"
+      PURGE_LEGACY_FACE_IMAGES: "true"
+      ATTENDANCE_COOLDOWN_MINUTES: 5
+      FACE_MATCH_THRESHOLD: 0.45
+      DUPLICATE_MATCH_THRESHOLD: 0.55
+    volumes:
+      - backend_data:/app/data
+    ports:
+      - "8000:8000"
+
+  frontend:
+    image: face-attendance-frontend:latest
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: /api/v1
+    container_name: face-attendance-frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+
+volumes:
+  backend_data:

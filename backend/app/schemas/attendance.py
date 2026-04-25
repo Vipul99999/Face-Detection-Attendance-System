@@ -1,12 +1,10 @@
 from pydantic import BaseModel
-from datetime import datetime
+
 
 class AttendanceRecord(BaseModel):
+    id: int
+    user_id: int
     name: str
-    time: datetime
-
-    class Config:
-        orm_mode = True
-        json_encoders = {
-            datetime: lambda v: v.isoformat()
-        }
+    time: str
+    similarity: float | None = None
+    captured_image_path: str | None = None

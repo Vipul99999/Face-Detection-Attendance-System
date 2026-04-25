@@ -1,47 +1,96 @@
-# Face Attendance Backend
+# Backend
 
-## Run locally
+FastAPI backend for the face attendance system.
 
-1. Create virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate   # on Windows: venv\Scripts\activate
+## Responsibilities
 
-Install deps:
+- admin authentication
+- student registration
+- attendance capture and duplicate protection
+- analytics and summary endpoints
+- CSV export
+- audit logs
+- encrypted embedding storage
+- anti-spoof and optional liveness validation
 
+## Run Locally
+
+```powershell
+cd "D:\Project Build\Face\backend"
 pip install -r requirements.txt
+uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+```
 
+API base:
+- `http://localhost:8000/api/v1`
 
-Start MongoDB locally (mongod)
+Health endpoints:
+- `http://localhost:8000/health`
+- `http://localhost:8000/api/v1/health`
 
-Run backend:
+## Docker
 
-uvicorn app.main:app --reload --port 8000
+Build:
 
-API Endpoints
+```powershell
+cd "D:\Project Build\Face\backend"
+docker build -t face-attendance-backend:latest .
+```
 
-POST /api/v1/register → Register new user (name + face image)
+Run:
 
-POST /api/v1/capture → Capture face and mark attendance
+```powershell
+docker run -p 8000:8000 face-attendance-backend:latest
+```
 
-GET /api/v1/attendance → Fetch attendance records
+## Important Environment Variables
 
+- `ADMIN_USERNAME`
+- `ADMIN_PASSWORD`
+- `AUTH_SECRET`
+- `EMBEDDING_ENCRYPTION_KEY`
+- `PREVIOUS_EMBEDDING_ENCRYPTION_KEYS`
+- `ENABLE_LIVENESS_CHECKS`
+- `LIVENESS_SECRET`
+- `ANTI_SPOOF_MODEL_PATH`
+- `ANTI_SPOOF_THRESHOLD`
+- `DATABASE_PATH`
+- `UPLOAD_DIR`
+- `ATTENDANCE_COOLDOWN_MINUTES`
+- `FACE_MATCH_THRESHOLD`
+- `DUPLICATE_MATCH_THRESHOLD`
+- `STORE_FACE_IMAGES`
+- `PURGE_LEGACY_FACE_IMAGES`
 
----
+## Main Endpoints
 
-# ✅ Next Steps
+Public:
+- `GET /api/v1/health`
+- `GET /api/v1/liveness/challenge`
+- `POST /api/v1/capture`
+- `POST /api/v1/capture/auto`
 
-1. Run MongoDB locally (or connect to cloud Atlas).  
-2. Install deps & run backend:  
-   ```bash
-   pip install -r requirements.txt
-   uvicorn app.main:app --reload --port 8000
+Admin auth:
+- `POST /api/v1/admin/login`
+- `GET /api/v1/admin/me`
 
+Admin data:
+- `GET /api/v1/students`
+- `POST /api/v1/register`
+- `GET /api/v1/attendance`
+- `GET /api/v1/attendance/export.csv`
+- `GET /api/v1/dashboard/summary`
+- `GET /api/v1/analytics/summary`
+- `GET /api/v1/audit-logs`
+- `POST /api/v1/security/embeddings/re-encrypt`
+- `POST /api/v1/students/{student_id}/purge`
 
-Keep frontend running (npm run dev), it will call backend at http://localhost:8000/api/v1.
+## Deployability
 
-Test workflow:
+The backend is deployable on Render or any container-based Python host.
 
-Go to Register page → enter name + upload/capture → registers user.
+Recommended:
+- Render web service using [Dockerfile](D:\Project Build\Face\backend\Dockerfile)
 
-Go to Dashboard → face appears → attendance is logged.
+Not recommended:
+- Vercel serverless for this backend, because native computer-vision dependencies are too heavy for that runtime.

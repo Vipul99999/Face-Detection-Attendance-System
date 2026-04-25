@@ -1,7 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* small custom */
-.video-container { position: relative; width: 100%; max-width: 640px; }
-.overlay-canvas { position: absolute; left: 0; top: 0; pointer-events: none; }
+@layer base {
+  :root {
+    --page-bg:
+      radial-gradient(circle at top left, rgba(34, 197, 94, 0.12), transparent 24%),
+      radial-gradient(circle at 82% 8%, rgba(251, 146, 60, 0.18), transparent 22%),
+      radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.14), transparent 26%),
+      linear-gradient(180deg, #fffdf8 0%, #eef4f8 100%);
+    --panel-bg: rgba(255, 255, 255, 0.84);
+    --panel-border: rgba(255, 255, 255, 0.78);
+    --soft-shadow: 0 26px 80px -44px rgba(15, 23, 42, 0.42);
+    --card-shadow: 0 20px 52px -34px rgba(15, 23, 42, 0.38);
+  }
+
+  html {
+    font-family: "Manrope", sans-serif;
+    background: var(--page-bg);
+  }
+
+  body {
+    @apply min-h-screen text-slate-900 antialiased;
+    background: transparent;
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-[32px] border backdrop-blur-2xl;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.78));
+    border-color: var(--panel-border);
+    box-shadow: var(--soft-shadow);
+  }
+
+  .hero-panel {
+    @apply relative grid gap-6 overflow-hidden rounded-[38px] border p-6 md:grid-cols-[1.15fr_0.85fr] md:p-8;
+    background:
+      radial-gradient(circle at top right, rgba(249, 115, 22, 0.28), transparent 30%),
+      radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.15), transparent 28%),
+      linear-gradient(135deg, rgba(255, 247, 237, 0.98), rgba(255, 255, 255, 0.92));
+    border-color: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 34px 100px -48px rgba(15, 23, 42, 0.5);
+  }
+
+  .hero-panel::after {
+    content: "";
+    position: absolute;
+    inset: auto -8% -42% auto;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.18), transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-kicker {
+    @apply text-xs font-bold uppercase tracking-[0.38em] text-orange-600;
+  }
+
+  .hero-title {
+    font-family: "Sora", sans-serif;
+    @apply mt-3 max-w-4xl text-4xl font-extrabold leading-[1.02] text-slate-950 md:text-6xl;
+  }
+
+  .hero-copy {
+    @apply mt-5 max-w-2xl text-sm leading-7 text-slate-600 md:text-base;
+  }
+
+  .hero-status {
+    @apply panel relative self-start p-5;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 252, 0.82));
+  }
+
+  .stat-card {
+    @apply rounded-[30px] border p-5;
+    border-color: rgba(255, 255, 255, 0.86);
+    box-shadow: var(--card-shadow);
+  }
+
+  .action-button {
+    @apply rounded-full px-5 py-3 text-sm font-semibold text-white transition duration-200;
+    box-shadow: 0 20px 42px -28px rgba(15, 23, 42, 0.55);
+  }
+
+  .action-button:hover {
+    transform: translateY(-1px);
+  }
+
+  .input-field {
+    @apply w-full rounded-2xl border bg-white/95 px-4 py-3 text-slate-900 outline-none transition focus:ring-4;
+    border-color: rgba(148, 163, 184, 0.26);
+  }
+
+  .input-field:focus {
+    border-color: rgba(249, 115, 22, 0.4);
+    --tw-ring-color: rgba(254, 215, 170, 0.78);
+  }
+
+  .section-label {
+    @apply text-[11px] font-bold uppercase tracking-[0.32em] text-slate-400;
+  }
+
+  .metric-tile {
+    @apply rounded-[24px] border px-4 py-4;
+    border-color: rgba(226, 232, 240, 0.88);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 252, 0.92));
+  }
+
+  .glass-strip {
+    @apply rounded-[24px] border px-4 py-4;
+    border-color: rgba(255, 255, 255, 0.8);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(248, 250, 252, 0.7));
+  }
+
+  .startup-grid {
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+
+  .startup-pill {
+    @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em];
+    background: rgba(15, 23, 42, 0.94);
+    color: white;
+    box-shadow: 0 16px 30px -22px rgba(15, 23, 42, 0.55);
+  }
+}
