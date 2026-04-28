@@ -10,7 +10,7 @@ Full-stack face-recognition attendance project with a public scanner flow, prote
 
 ## Live Demo
 
-![Live Demo](./FaceCheck-Demo1.mp4)
+![Live Demo](./FaceCheck.gif)
 
 ---
 
