@@ -227,7 +227,7 @@ export default function Dashboard() {
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-3">
+      <section className="grid gap-6 lg:grid-cols-2">
         <div className="panel p-5">
           <p className="section-label">Product Value</p>
           <h3 className="mt-1 text-xl font-semibold text-slate-900">Why this project stands out</h3>

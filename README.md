@@ -2,11 +2,11 @@
 
 Full-stack face-recognition attendance project with a public scanner flow, protected admin workspace, student registration, analytics, CSV export, encrypted biometric embeddings, anti-spoof checks, and Docker-based deployment.
 
-This repo is suitable for:
-- B.Tech / final-year major project demos
-- portfolio and recruiter walkthroughs
-- local classroom / lab attendance demos
-- self-hosted MVP deployment
+## Live Link
+
+[Live Link](https://face-check-six.vercel.app/)
+
+---
 
 ## What The Project Does
 
