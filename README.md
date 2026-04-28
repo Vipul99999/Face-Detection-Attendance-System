@@ -8,6 +8,12 @@ Full-stack face-recognition attendance project with a public scanner flow, prote
 
 ---
 
+## Live Demo
+
+![Live Demo](./FaceCheck-Demo1.mp4)
+
+---
+
 ## What The Project Does
 
 - Students use a public attendance scanner without creating accounts.
@@ -17,6 +23,8 @@ Full-stack face-recognition attendance project with a public scanner flow, prote
 - Raw face images are disabled by default; encrypted embeddings are stored in SQLite.
 - Backend anti-spoof checks are enabled.
 - Liveness is configurable and currently optional by default for faster attendance scans.
+
+---
 
 ## Current Status
 
@@ -29,6 +37,8 @@ Recommended deployment options:
 
 Not recommended:
 - Running the Python backend on Vercel serverless functions. The backend depends on OpenCV, InsightFace, and ONNX Runtime, which are a much better fit for a container host like Render.
+
+---
 
 ## Minimum-Cost Deployment Path
 
