@@ -3,6 +3,7 @@ import { Navigate, NavLink, Route, Routes, useLocation } from "react-router-dom"
 
 import AdminLogin from "./pages/AdminLogin";
 import AdminPanel from "./pages/AdminPanel";
+import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import {
@@ -15,6 +16,7 @@ import {
 
 const publicNavItems = [
   { to: "/", label: "Scanner" },
+  { to: "/about", label: "About" },
   { to: "/admin/login", label: "Admin Login" },
 ];
 
@@ -86,6 +88,7 @@ export default function App() {
 
     return [
       { to: "/", label: "Scanner" },
+      { to: "/about", label: "About" },
       { to: "/admin", label: "Admin Panel" },
       { to: "/register", label: "Register" },
     ];
@@ -134,15 +137,11 @@ export default function App() {
       <header className="sticky top-0 z-20 border-b border-white/60 bg-white/65 backdrop-blur-2xl">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-5 md:flex-row md:items-center md:justify-between md:px-6">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.36em] text-orange-600">
-              Touchless Campus Flow
-            </p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.36em] text-slate-500">Computer Vision Platform</p>
             <h1 className="mt-1 font-['Sora'] text-2xl font-bold text-slate-950 md:text-3xl">
-              Face Detection Attendance System
+              FaceCheck
             </h1>
-            <p className="mt-1 text-sm text-slate-500">
-              Public scanner for students, protected workspace for admins.
-            </p>
+            <p className="mt-1 text-sm text-slate-500">Real-time capture and admin management workspace.</p>
           </div>
 
           <nav className="flex flex-wrap gap-2 rounded-full border border-white/80 bg-white/70 p-1.5 shadow-[0_18px_44px_-28px_rgba(15,23,42,0.34)] backdrop-blur-xl">
@@ -177,6 +176,7 @@ export default function App() {
         ) : null}
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/about" element={<About />} />
           <Route
             path="/admin/login"
             element={

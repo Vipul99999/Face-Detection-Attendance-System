@@ -1,10 +1,12 @@
 # Documentation Index
 
-- [Project Docs](D:\Project Build\Face\docs\project-docs.md)
-- [API Docs](D:\Project Build\Face\docs\api-docs.md)
-- [Deployment Docs](D:\Project Build\Face\docs\deployment-docs.md)
-- [Guidance Docs](D:\Project Build\Face\docs\guidance-docs.md)
+- [Project Docs](project-docs.md)
+- [API Docs](api-docs.md)
+- [Deployment Docs](deployment-docs.md)
+- [Guidance Docs](guidance-docs.md)
+- [Pre-Launch QA Checklist](pre-launch-qa.md)
 
 Start with:
-- [README.md](D:\Project Build\Face\README.md) for setup and deployment
-- [docs/deployment-docs.md](D:\Project Build\Face\docs\deployment-docs.md) if your main question is "is it deployable and how?"
+- [Root README](../README.md) for setup, architecture, and deployment.
+- [Deployment Docs](deployment-docs.md) for hosting details.
+- [Pre-Launch QA Checklist](pre-launch-qa.md) before sharing your live link.

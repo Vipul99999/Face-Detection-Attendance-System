@@ -32,7 +32,7 @@ export default function Dashboard() {
     } catch (_error) {
       setFeedback({
         status: "idle",
-        message: "Scanner is ready. Backend connection will be used during attendance actions.",
+        message: "Scanner is ready. Backend connection is used during capture.",
       });
     }
   };
@@ -79,47 +79,18 @@ export default function Dashboard() {
 
   const feedbackTone = useMemo(() => buildStatusTone(feedback.status), [feedback.status]);
 
-  const highlightItems = [
-    "Real-time webcam-driven attendance capture",
-    "Duplicate attendance cooldown protection",
-    "Fast scan flow designed for shared classroom kiosks",
-    "Admin-controlled registration and reporting workspace",
-    "Active liveness challenge before attendance capture",
-  ];
-
-  const engineeringItems = [
-    "React + Vite frontend with reusable camera and dashboard modules",
-    "FastAPI backend with public scan APIs and protected admin APIs",
-    "SQLite persistence for zero-friction local deployment",
-    "InsightFace embeddings with configurable similarity thresholds",
-    "Random blink plus head-turn liveness challenge to reduce photo and replay spoofing",
-  ];
-
   return (
     <div className="space-y-6">
-      <section className="hero-panel">
-        <div className="max-w-3xl">
-          <p className="hero-kicker">Smart Attendance</p>
-          <h1 className="hero-title">Fast, touchless attendance with face verification and live user challenge.</h1>
-          <p className="hero-copy">
-            Open the camera, complete the quick liveness step, and let the system mark attendance in seconds. The platform is designed for classroom use with secure admin controls in the background.
-          </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <span className="startup-pill">Live camera loop</span>
-            <span className="startup-pill">Active liveness</span>
-            <span className="startup-pill">Admin-secured backend</span>
+      <section className="panel p-6 md:p-8">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="section-label">Attendance</p>
+            <h2 className="mt-2 font-['Sora'] text-3xl font-bold text-slate-950 md:text-4xl">Live Scanner</h2>
+            <p className="mt-3 max-w-2xl text-sm text-slate-600 md:text-base">
+              Start camera capture and complete one quick action if liveness is enabled.
+            </p>
           </div>
-        </div>
-        <div className="hero-status">
-          <p className="section-label">How It Works</p>
-          <div className="mt-3 space-y-3 text-sm text-slate-600">
-            <p>1. Start the scanner and position one face clearly in frame.</p>
-            <p>2. Complete one quick live action like a blink or slight head turn.</p>
-            <p>3. Attendance is matched and marked automatically.</p>
-          </div>
-          <div className={`mt-4 rounded-2xl border px-4 py-3 text-sm font-medium ${feedbackTone}`}>
-            {feedback.message}
-          </div>
+          <div className={`rounded-2xl border px-4 py-3 text-sm font-medium ${feedbackTone}`}>{feedback.message}</div>
         </div>
       </section>
 
@@ -134,82 +105,42 @@ export default function Dashboard() {
           title="Attendance Scanner"
           description={
             health?.liveness?.enabled
-              ? "Use auto scan during live attendance, then complete one quick live action before capture."
-              : "Use auto scan during live attendance. The system will capture attendance as soon as your face is clear."
+              ? "Auto-scan runs continuously. Complete one quick live action before capture."
+              : "Auto-scan runs continuously and captures attendance when the face is clear."
           }
           accent="amber"
         />
 
         <div className="space-y-6">
-          <div className="panel startup-grid p-5">
-            <p className="section-label">Student Flow</p>
-            <h3 className="mt-1 text-xl font-semibold text-slate-900">Public Attendance Mode</h3>
-            <div className="mt-4 space-y-3 text-sm text-slate-600">
-              <p>Students do not need an account.</p>
-              <p>Open the camera, do one quick live action, and let the system identify the face.</p>
-              <p>Admins manage onboarding, review records, and maintain the system from the protected panel.</p>
-              <p>
-                Scanner status:{" "}
-                <span className="font-semibold text-slate-900">
-                  {cameraOn ? "Camera active" : "Camera idle"}
-                </span>
-              </p>
-              <p>
-                Backend:{" "}
-                <span className="font-semibold text-slate-900">
-                  {health ? "Connected" : "Unavailable"}
-                </span>
-              </p>
-              <p>
-                Face engine:{" "}
-                <span className="font-semibold text-slate-900">
-                  {health?.face_engine?.available ? "Ready" : health?.face_engine?.reason || "Checking"}
-                </span>
-              </p>
-            </div>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-3">
-            <article className="stat-card bg-[linear-gradient(135deg,_rgba(255,247,237,0.98),_rgba(255,255,255,0.92))]">
-              <p className="section-label">Mode</p>
-              <p className="mt-3 text-2xl font-semibold text-slate-900">Public</p>
-              <p className="mt-2 text-sm text-slate-600">Students use the scanner without signing in.</p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <article className="stat-card">
+              <p className="section-label">Camera</p>
+              <p className="mt-2 text-xl font-semibold text-slate-900">{cameraOn ? "Active" : "Idle"}</p>
             </article>
-            <article className="stat-card bg-[linear-gradient(135deg,_rgba(236,253,245,0.98),_rgba(255,255,255,0.92))]">
+            <article className="stat-card">
+              <p className="section-label">Backend</p>
+              <p className="mt-2 text-xl font-semibold text-slate-900">{health ? "Connected" : "Unavailable"}</p>
+            </article>
+            <article className="stat-card">
               <p className="section-label">Liveness</p>
-              <p className="mt-3 text-2xl font-semibold text-slate-900">
-                {health?.liveness?.enabled ? "Quick" : "Off"}
-              </p>
-              <p className="mt-2 text-sm text-slate-600">
-                {health?.liveness?.enabled
-                  ? "One short live action before capture."
-                  : "Attendance capture runs without liveness gating."}
-              </p>
+              <p className="mt-2 text-xl font-semibold text-slate-900">{health?.liveness?.enabled ? "Enabled" : "Disabled"}</p>
             </article>
-            <article className="stat-card bg-[linear-gradient(135deg,_rgba(239,246,255,0.98),_rgba(255,255,255,0.92))]">
-              <p className="section-label">Behavior</p>
-              <p className="mt-3 text-2xl font-semibold text-slate-900">Auto-stop</p>
-              <p className="mt-2 text-sm text-slate-600">Camera closes after success or duplicate detection.</p>
+            <article className="stat-card">
+              <p className="section-label">Face Engine</p>
+              <p className="mt-2 text-xl font-semibold text-slate-900">
+                {health?.face_engine?.available ? "Ready" : health?.face_engine?.reason || "Checking"}
+              </p>
             </article>
           </div>
 
           <div className="panel p-5">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="section-label">Latest Activity</p>
-                <h3 className="mt-1 text-xl font-semibold text-slate-900">Recent Scan Results</h3>
-              </div>
-            </div>
-
+            <p className="section-label">Recent Results</p>
             <div className="mt-4 max-h-[320px] space-y-3 overflow-auto pr-1">
               {scanHistory.length === 0 ? (
-                <p className="text-sm text-slate-500">No captures yet in this session.</p>
+                <p className="text-sm text-slate-500">No captures in this session.</p>
               ) : (
                 scanHistory.map((scan) => (
-                  <div
-                    key={scan.id}
-                    className={`rounded-[24px] border px-4 py-4 shadow-[0_16px_36px_-28px_rgba(15,23,42,0.35)] ${buildStatusTone(scan.status)}`}
-                  >
+                  <div key={scan.id} className={`rounded-2xl border px-4 py-4 ${buildStatusTone(scan.status)}`}>
                     <div className="flex items-center justify-between gap-3">
                       <p className="font-semibold">{scan.user}</p>
                       <span className="rounded-full bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em]">
@@ -223,48 +154,6 @@ export default function Dashboard() {
                 ))
               )}
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="grid gap-6 lg:grid-cols-3">
-        <div className="panel p-5">
-          <p className="section-label">Product Value</p>
-          <h3 className="mt-1 text-xl font-semibold text-slate-900">Why this project stands out</h3>
-          <div className="mt-4 space-y-3">
-            {highlightItems.map((item) => (
-              <div
-                key={item}
-                className="rounded-[22px] border border-orange-100 bg-[linear-gradient(135deg,_rgba(255,237,213,0.92),_rgba(255,255,255,0.88))] px-4 py-3 text-sm text-slate-700"
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="panel p-5">
-          <p className="section-label">Engineering</p>
-          <h3 className="mt-1 text-xl font-semibold text-slate-900">Implementation highlights</h3>
-          <div className="mt-4 space-y-3">
-            {engineeringItems.map((item) => (
-              <div
-                key={item}
-                className="rounded-[22px] border border-sky-100 bg-[linear-gradient(135deg,_rgba(224,242,254,0.88),_rgba(255,255,255,0.9))] px-4 py-3 text-sm text-slate-700"
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="panel startup-grid p-5">
-          <p className="section-label">Deployment</p>
-          <h3 className="mt-1 text-xl font-semibold text-slate-900">Demo-Ready Notes</h3>
-          <div className="mt-4 space-y-3 text-sm text-slate-600">
-            <p>Docker support lets recruiters run the full stack quickly.</p>
-            <p>Admin analytics make the project easier to explain in interviews.</p>
-            <p>Public scanner mode keeps the actual user flow simple.</p>
           </div>
         </div>
       </section>
