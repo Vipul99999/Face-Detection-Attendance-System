@@ -258,15 +258,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="panel startup-grid p-5">
-          <p className="section-label">Deployment</p>
-          <h3 className="mt-1 text-xl font-semibold text-slate-900">Demo-Ready Notes</h3>
-          <div className="mt-4 space-y-3 text-sm text-slate-600">
-            <p>Docker support lets recruiters run the full stack quickly.</p>
-            <p>Admin analytics make the project easier to explain in interviews.</p>
-            <p>Public scanner mode keeps the actual user flow simple.</p>
-          </div>
-        </div>
+        
       </section>
     </div>
   );

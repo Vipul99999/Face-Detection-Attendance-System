@@ -12,12 +12,7 @@ EMBEDDING_PREFIX = "enc::"
 
 def _normalize_key(value: str) -> bytes:
     raw = value.encode("utf-8")
-    try:
-        return base64.urlsafe_b64encode(base64.urlsafe_b64decode(raw))
-    except Exception:
-        digest = hashlib.sha256(raw).digest()
-        return base64.urlsafe_b64encode(digest)
-
+    return base64.urlsafe_b64encode(hashlib.sha256(raw).digest())
 
 def _build_primary_key() -> bytes:
     if settings.embedding_encryption_key:

@@ -140,9 +140,7 @@ export default function App() {
             <h1 className="mt-1 font-['Sora'] text-2xl font-bold text-slate-950 md:text-3xl">
               Face Detection Attendance System
             </h1>
-            <p className="mt-1 text-sm text-slate-500">
-              Public scanner for students, protected workspace for admins.
-            </p>
+            
           </div>
 
           <nav className="flex flex-wrap gap-2 rounded-full border border-white/80 bg-white/70 p-1.5 shadow-[0_18px_44px_-28px_rgba(15,23,42,0.34)] backdrop-blur-xl">
